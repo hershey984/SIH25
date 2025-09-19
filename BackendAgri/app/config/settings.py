@@ -1,6 +1,8 @@
 import os
 from pydantic_settings import BaseSettings
 from typing import Optional
+from functools import lru_cache
+
 
 class Settings(BaseSettings):
     # MongoDB Database
@@ -209,3 +211,7 @@ elif settings.ENVIRONMENT == "staging":
 else:  # development
     settings.DEBUG = True
     settings.LOG_LEVEL = "DEBUG"
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()

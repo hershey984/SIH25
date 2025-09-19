@@ -82,3 +82,6 @@ async def check_database_health():
             "status": "unhealthy",
             "error": str(e)
         }
+    
+
+get_db = get_database

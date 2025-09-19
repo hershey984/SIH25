@@ -1,9 +1,9 @@
 """
 Database models and schemas
 """
-from .chat import ChatMessage, ChatSession, ChatResponse, ChatHistory
+from .chat import ChatMessage, ChatSession, ChatSessionResponse, ChatMessageResponse, ChatHistory
 from .knowledge import KnowledgeBase, KnowledgeEntry, SearchResult
-from .plant_doctor import PlantDiagnosis, PlantImage, DiagnosisResult, PlantDisease
+from .plant_doctor import PlantDoctorReport
 
 # For MongoDB/Beanie registration
 __beanie_models__ = [
@@ -12,15 +12,18 @@ __beanie_models__ = [
     ChatHistory,
     KnowledgeBase,
     KnowledgeEntry,
-    PlantDiagnosis,
-    PlantImage,
-    DiagnosisResult,
-    PlantDisease
+    PlantDoctorReport
 ]
 
 __all__ = [
-    "ChatMessage", "ChatSession", "ChatResponse", "ChatHistory",
-    "KnowledgeBase", "KnowledgeEntry", "SearchResult", 
-    "PlantDiagnosis", "PlantImage", "DiagnosisResult", "PlantDisease",
+    "ChatMessage",
+    "ChatSession",
+    "ChatSessionResponse",
+    "ChatMessageResponse",
+    "ChatHistory",
+    "KnowledgeBase",
+    "KnowledgeEntry",
+    "SearchResult",
+    "PlantDoctorReport",
     "__beanie_models__"
 ]

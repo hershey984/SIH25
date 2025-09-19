@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-import redis
+import redis.asyncio as redis  # Use async version
 import motor.motor_asyncio
 from beanie import init_beanie
 
@@ -10,7 +10,7 @@ from app.routes import chat, storage
 # Import your models for Beanie initialization
 from app.models.chat import ChatMessage, ChatSession
 from app.models.knowledge import KnowledgeBase, KnowledgeEntry
-from app.models.plant_doctor import PlantDiagnosis, PlantImage
+from app.models.plant_doctor import PlantDoctorReport
 
 # MongoDB client
 mongodb_client = None
@@ -40,8 +40,7 @@ async def lifespan(app: FastAPI):
                 ChatSession,
                 KnowledgeBase,
                 KnowledgeEntry,
-                PlantDiagnosis,
-                PlantImage
+                PlantDoctorReport
             ]
         )
         print("✅ Beanie ODM initialized successfully")
