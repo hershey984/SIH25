@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Alerts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8f6;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+    }
+
+    .alerts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .alert-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 6px solid #ddd;
+    }
+
+    .alert-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .alert-card p {
+      margin: 5px 0;
+      color: #444;
+      font-size: 14px;
+    }
+
+    .alert-type {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 3px 6px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    /* Severity Colors */
+    .critical { background: #ffe5e5; border-left-color: #e94f4f; }
+    .medium { background: #fff7e6; border-left-color: #f5a623; }
+    .low { background: #f0f7ff; border-left-color: #4a90e2; }
+
+    .action-box {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      font-size: 13px;
+    }
+
+    .meta-info {
+      font-size: 12px;
+      color: #666;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .source {
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Filters -->
+  <div class="filters">
+    <select id="filterType">
+      <option value="all">All Types</option>
+      <option value="disease">Disease Outbreak</option>
+      <option value="vaccination">Vaccination</option>
+      <option value="weather">Weather Health</option>
+      <option value="air">Air Quality</option>
+      <option value="healthtip">Health Tip</option>
+    </select>
+
+    <select id="filterSeverity">
+      <option value="all">All Severity</option>
+      <option value="critical">Critical</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+  </div>
+
+  <!-- Alerts -->
+  <div class="alerts-grid" id="alertsGrid">
+
+    <div class="alert-card critical" data-type="disease" data-severity="critical">
+      <span class="alert-type">Disease Outbreak</span>
+      <h3>Dengue Fever Alert - Delhi NCR</h3>
+      <p>Increased cases of dengue fever reported in Delhi and surrounding areas. Symptoms include high fever, headache, eye pain, muscle and joint pains.</p>
+      <div class="action-box">
+        <strong>Action Required:</strong> Remove stagnant water, use mosquito repellents, seek medical care for fever above 101°F.
+      </div>
+      <div class="meta-info">
+        <span>📍 Delhi NCR</span>
+        <span>📅 Published Sep 19, 2025</span>
+        <span class="source">Source: Delhi Department of Health</span>
+      </div>
+    </div>
+
+    <div class="alert-card medium" data-type="vaccination" data-severity="medium">
+      <span class="alert-type">Vaccination</span>
+      <h3>Free COVID-19 Vaccination Drive</h3>
+      <p>Government hospitals are conducting free booster vaccination for citizens above 18 years. Updated vaccines available for new variants.</p>
+      <div class="action-box">
+        <strong>Action Required:</strong> Visit nearest govt hospital with ID & vaccination certificate.
+      </div>
+      <div class="meta-info">
+        <span>📍 All India</span>
+        <span>📅 Published Sep 19, 2025</span>
+        <span class="source">Source: Ministry of Health & Family Welfare</span>
+      </div>
+    </div>
+
+    <div class="alert-card medium" data-type="weather" data-severity="medium">
+      <span class="alert-type">Weather Health</span>
+      <h3>Winter Health Advisory</h3>
+      <p>Cold wave conditions expected. Take precautions against respiratory infections, hypothermia, and dehydration.</p>
+      <div class="action-box">
+        <strong>Action Required:</strong> Wear warm clothing, stay hydrated, avoid outdoor activities during cold peak hours.
+      </div>
+      <div class="meta-info">
+        <span>📍 Northern India</span>
+        <span>📅 Published Sep 19, 2025</span>
+        <span class="source">Source: India Meteorological Department</span>
+      </div>
+    </div>
+
+    <div class="alert-card critical" data-type="air" data-severity="critical">
+      <span class="alert-type">Air Quality</span>
+      <h3>Air Quality Emergency - Mumbai</h3>
+      <p>Air Quality Index (AQI) has reached hazardous levels above 400. Immediate health risks for all population groups.</p>
+      <div class="action-box">
+        <strong>Action Required:</strong> Stay indoors, use air purifiers, wear N95 masks if going outside.
+      </div>
+      <div class="meta-info">
+        <span>📍 Mumbai</span>
+        <span>📅 Published Sep 19, 2025</span>
+        <span class="source">Source: Central Pollution Control Board</span>
+      </div>
+    </div>
+
+    <div class="alert-card low" data-type="healthtip" data-severity="low">
+      <span class="alert-type">Health Tip</span>
+      <h3>Hand Hygiene Awareness</h3>
+      <p>Regular handwashing remains the most effective way to prevent infectious diseases. Wash for at least 20 seconds with soap and water.</p>
+      <div class="action-box">
+        <strong>Action Required:</strong> Practice regular handwashing, use hand sanitizer when soap unavailable.
+      </div>
+      <div class="meta-info">
+        <span>📍 All India</span>
+        <span>📅 Published Sep 19, 2025</span>
+        <span class="source">Source: World Health Organization</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const filterType = document.getElementById("filterType");
+    const filterSeverity = document.getElementById("filterSeverity");
+    const alerts = document.querySelectorAll(".alert-card");
+
+    function applyFilters() {
+      const type = filterType.value;
+      const severity = filterSeverity.value;
+
+      alerts.forEach(alert => {
+        const matchesType = (type === "all" || alert.dataset.type === type);
+        const matchesSeverity = (severity === "all" || alert.dataset.severity === severity);
+
+        alert.style.display = (matchesType && matchesSeverity) ? "flex" : "none";
+      });
+    }
+
+    filterType.addEventListener("change", applyFilters);
+    filterSeverity.addEventListener("change", applyFilters);
+  </script>
+
+</body>
+</html>

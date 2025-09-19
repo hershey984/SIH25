@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Health Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      border: 1px solid #eee;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-header button {
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .toggle input {
+      width: 40px;
+      height: 20px;
+    }
+
+    .save-btn {
+      display: block;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 0 auto;
+      width: 150px;
+    }
+
+    .save-btn:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Family Members Section -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Family Members (0)</h2>
+        <button onclick="alert('Add Member Form Coming Soon!')">+ Add Member</button>
+      </div>
+      <p style="color:#888; font-size:14px;">No family members added yet.<br>Click "Add Member" to build your family profile.</p>
+    </div>
+
+    <!-- Personal & Medical Information -->
+    <div class="section">
+      <h2>My Personal & Medical Information</h2>
+      <input type="text" id="fullName" placeholder="Full Name">
+      <input type="email" id="email" placeholder="Email">
+      <div class="row">
+        <input type="number" id="age" placeholder="Age">
+        <select id="gender">
+          <option value="">Select Gender</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="row">
+        <input type="text" id="height" placeholder="Height (cm)">
+        <input type="text" id="weight" placeholder="Weight (kg)">
+        <select id="bloodType">
+          <option value="">Blood Type</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option>
+          <option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+      <textarea id="medicalConditions" placeholder="Medical Conditions (comma separated)"></textarea>
+      <textarea id="allergies" placeholder="Known Allergies (comma separated)"></textarea>
+    </div>
+
+    <!-- Emergency & Preferences -->
+    <div class="section">
+      <h2>Settings, Emergency & Preferences</h2>
+      <input type="text" id="emergencyContactName" placeholder="Emergency Contact Name">
+      <input type="text" id="emergencyPhone" placeholder="Emergency Phone Number">
+      <input type="text" id="currentCity" placeholder="Current City">
+      
+      <div class="toggle">
+        <span>Notification Preference</span>
+        <input type="checkbox" id="notifPref">
+      </div>
+      <div class="toggle">
+        <span>Disease Outbreak Alerts</span>
+        <input type="checkbox" id="diseaseAlerts">
+      </div>
+      <div class="toggle">
+        <span>Vaccination Reminders</span>
+        <input type="checkbox" id="vaccineReminders">
+      </div>
+    </div>
+
+    <button class="save-btn" onclick="saveProfile()">💾 Save Profile</button>
+  </div>
+
+  <script>
+    function saveProfile() {
+      const profile = {
+        fullName: document.getElementById("fullName").value,
+        email: document.getElementById("email").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value,
+        height: document.getElementById("height").value,
+        weight: document.getElementById("weight").value,
+        bloodType: document.getElementById("bloodType").value,
+        medicalConditions: document.getElementById("medicalConditions").value,
+        allergies: document.getElementById("allergies").value,
+        emergencyContactName: document.getElementById("emergencyContactName").value,
+        emergencyPhone: document.getElementById("emergencyPhone").value,
+        currentCity: document.getElementById("currentCity").value,
+        notifPref: document.getElementById("notifPref").checked,
+        diseaseAlerts: document.getElementById("diseaseAlerts").checked,
+        vaccineReminders: document.getElementById("vaccineReminders").checked
+      };
+
+      localStorage.setItem("healthProfile", JSON.stringify(profile));
+      alert("✅ Profile Saved Successfully!");
+    }
+  </script>
+</body>
+</html>
