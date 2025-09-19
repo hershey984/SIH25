@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Analysis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Step 1: Analysis Complete</h1>
+        <p>The Supervisory Agent has analyzed your query and prepared the following plan:</p>
+        
+        <article>
+            <header><strong>Agent's Plan</strong></header>
+            <p><strong>Recommended Agent:</strong> <code>{{ analysis.agent_required }}</code></p>
+            <p><strong>Refined Query for Next Agent:</strong> {{ analysis.query_for_next_agent }}</p>
+            {% if analysis.supporting_info %}
+                <details>
+                    <summary><strong>View Supporting Info</strong></summary>
+                    <p><strong>Agricultural Context:</strong> {{ analysis.supporting_info.agricultural_context }}</p>
+                    <p><strong>Market Context:</strong> {{ analysis.supporting_info.market_context }}</p>
+                </details>
+            {% endif %}
+        </article>
+
+        <hr>
+
+        <h2>Step 2: Please Confirm</h2>
+        <p>Is this the correct approach?</p>
+        
+        <form action="/confirm" method="post">
+            <!-- YES: Proceed with recommended agent -->
+            <button type="submit" name="choice" value="yes">Yes, Proceed</button>
+
+            <hr>
+
+            <!-- NO: User chooses a different agent -->
+            <details>
+                <summary>No, I want to choose a different agent</summary>
+                <label for="manual_agent">Select the agent you want:</label>
+                <select id="manual_agent" name="manual_agent" required>
+                    <option value="crop_advisor">Crop Advisor</option>
+                    <option value="plant_doctor">Plant Doctor</option>
+                    <option value="resource_manager">Resource Manager</option>
+                </select>
+                <button type="submit" name="choice" value="no" class="secondary">Submit Manual Choice</button>
+            </details>
+        </form>
+    </main>
+</body>
+</html>

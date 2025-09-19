@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Response</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .chat-box {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+        .user-msg {
+            background-color: #e0f7fa;
+        }
+        .agent-msg {
+            background-color: #fff3e0;
+        }
+    </style>
+</head>
+<body>
+    <main class="container chat-container">
+        <h1>Chat with <code>{{ agent | capitalize }}</code></h1>
+        
+        <div class="chat-box user-msg">
+            <strong>You asked:</strong>
+            <p>{{ query }}</p>
+        </div>
+
+        <div class="chat-box agent-msg">
+            <strong>{{ agent | capitalize }} says:</strong>
+            <pre>{{ result | tojson(indent=4) }}</pre>
+        </div>
+
+        <hr>
+        <a href="/" role="button">Start a New Query</a>
+    </main>
+</body>
+</html>

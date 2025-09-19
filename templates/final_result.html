@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Final Decision</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Final Plan</h1>
+        <article>
+            <header>{{ message }}</header>
+            <p>The system will now pass the following information to the selected agent:</p>
+            <pre><code>{{ decision | tojson(indent=4) }}</code></pre>
+            <footer>
+                <a href="/" role="button">Start a New Query</a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

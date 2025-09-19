@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supervisory Agent</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Supervisory AI Agent</h1>
+        <p>This agent will analyze your query, gather context, and decide which specialized agent should handle it.</p>
+        
+        <form action="/analyze" method="post">
+            <label for="query">Enter your query:</label>
+            <textarea id="query" name="query" rows="4" placeholder="e.g., What is the price of wheat? or Why are my tomato leaves turning yellow?" required></textarea>
+            
+            <button type="submit">Analyze Query</button>
+        </form>
+    </main>
+</body>
+</html>
