@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assistant | AI सहायक</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e8f5e9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .header p {
+      margin: 4px 0;
+      color: #444;
+    }
+
+    .chat-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+
+    .message {
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+
+    .bot {
+      background: #f3f4f6;
+      align-self: flex-start;
+    }
+
+    .user {
+      background: #d1fae5;
+      align-self: flex-end;
+    }
+
+    .quick-questions {
+      margin: 10px 0;
+    }
+
+    .quick-questions button {
+      margin: 5px 5px 0 0;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 20px;
+      background: #e0f2fe;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .input-area button {
+      background: #9333ea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h2>💬 AI Assistant | AI सहायक</h2>
+      <p>Get instant farming advice and solutions</p>
+      <p>तुरंत खेती की सलाह और समाधान पाएं</p>
+    </div>
+
+    <div class="chat-box">
+      <div class="messages" id="chat">
+        <div class="message bot">
+          👩‍🌾 नमस्ते! मैं आपका कृषि सहायक हूं। आप मुझसे खेती से जुड़े किसी भी सवाल पूछ सकते हैं:
+          <br>🌱 फसलों की देखभाल
+          <br>🐛 कीट-पतंगों की समस्या
+          <br>☁️ मौसम और सिंचाई
+          <br>🔥 बाज़ार की जानकारी
+          <br>🧑‍🔬 नई तकनीकें
+        </div>
+      </div>
+
+      <div class="quick-questions">
+        <button onclick="sendQuick('गेहूँ में कौन सा उर्वरक डालें?')">गेहूँ में कौन सा उर्वरक डालें?</button>
+        <button onclick="sendQuick('धान की फसल में कीड़े क्यों हैं')">धान की फसल में कीड़े क्यों हैं</button>
+        <button onclick="sendQuick('जैविक खाद कैसे बनाएं?')">जैविक खाद कैसे बनाएं?</button>
+        <button onclick="sendQuick('Weather forecast for next week')">Weather forecast for next week</button>
+        <button onclick="sendQuick('बाज़ार में आज के भाव क्या हैं?')">बाज़ार में आज के भाव क्या हैं?</button>
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="अपना सवाल टाइप करें...">
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat");
+
+    function addMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.classList.add("message", sender);
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (text === "") return;
+
+      addMessage(text, "user");
+      input.value = "";
+
+      // Dummy AI Reply
+      setTimeout(() => {
+        addMessage("🤖 यह एक डेमो जवाब है: " + text, "bot");
+      }, 1000);
+    }
+
+    function sendQuick(text) {
+      addMessage(text, "user");
+      setTimeout(() => {
+        addMessage("🤖 यह एक डेमो जवाब है: " + text, "bot");
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

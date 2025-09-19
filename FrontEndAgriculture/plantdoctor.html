@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Doctor | KrishiMitra</title>
+  <style>
+    * {margin:0; padding:0; box-sizing: border-box; font-family: Arial, sans-serif;}
+    body {background:#f0fdf4; padding:20px; color:#333;}
+
+    .header {margin-bottom:20px;}
+    .header h2 {font-size:22px; color:#0f9d58;}
+    .header p {color:#555; margin-top:5px;}
+
+    .container {display:flex; gap:20px; flex-wrap:wrap;}
+    .card {flex:1; min-width:280px; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,.1);}
+    .card h3 {margin-bottom:10px; font-size:18px;}
+    .upload-box {border:2px dashed #0f9d58; border-radius:10px; text-align:center; padding:30px; cursor:pointer;}
+    .upload-box img {max-width:100%; margin-top:10px; border-radius:8px;}
+    .choose-btn {background:#0f9d58; color:#fff; padding:10px 20px; border:none; border-radius:6px; margin-top:10px; cursor:pointer;}
+    .choose-btn:hover {background:#16a765;}
+    .result {text-align:center; color:#666;}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="Smart Crop Dashboard.html">⬅ Back</a>
+    <h2>🌱 Plant Doctor | पौधे डॉक्टर</h2>
+    <p>Upload a photo of your plant for instant diagnosis and treatment suggestions</p>
+  </div>
+
+  <div class="container">
+    <!-- Upload Section -->
+    <div class="card">
+      <h3>📷 Upload Plant Image</h3>
+      <div class="upload-box" onclick="document.getElementById('uploadInput').click()">
+        <p>Take or Upload Photo <br><small>फोटो लें या अपलोड करें</small></p>
+        <button class="choose-btn">Choose Image</button>
+        <input type="file" id="uploadInput" accept="image/*" style="display:none" onchange="previewImage(event)">
+        <div id="preview"></div>
+        <p style="font-size:12px; color:#888;">Support: JPG, PNG, HEIC formats</p>
+      </div>
+    </div>
+
+    <!-- Diagnosis Section -->
+    <div class="card">
+      <h3>🩺 Diagnosis Results</h3>
+      <div class="result" id="resultBox">
+        <p>No diagnosis yet <br><small>अभी तक कोई जांच नहीं हुई</small></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function previewImage(event){
+      const preview = document.getElementById('preview');
+      preview.innerHTML = '';
+      const file = event.target.files[0];
+      if(file){
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        preview.appendChild(img);
+
+        // Dummy diagnosis
+        document.getElementById('resultBox').innerHTML = `
+          <p><b>Diagnosis:</b> Possible fungal infection detected 🌿</p>
+          <p>💡 Suggestion: Use organic fungicide spray and avoid overwatering.</p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
