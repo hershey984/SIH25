@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Health Assistant</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f8f6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    /* Left Main Section */
+    .chat-box {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex: 2;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .header p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .bot-icon {
+      font-size: 50px;
+      text-align: center;
+      margin-bottom: 10px;
+      opacity: 0.6;
+    }
+
+    .suggestions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .suggestion-btn {
+      background: #f7f9fc;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .suggestion-btn:hover {
+      background: #e7f1fe;
+    }
+
+    /* Input Box */
+    .input-container {
+      display: flex;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .input-container input {
+      border: none;
+      padding: 10px 15px;
+      flex: 1;
+      outline: none;
+    }
+
+    .input-container button {
+      background: #4A90E2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .input-container button:hover {
+      background: #357ABD;
+    }
+
+    /* Right Chat Summary */
+    .chat-summary {
+      flex: 1;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .chat-summary h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .total-count {
+      font-size: 40px;
+      font-weight: bold;
+      color: #4A90E2;
+      margin: 10px 0;
+    }
+
+    .status {
+      color: green;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Left Chat UI -->
+    <div class="chat-box">
+      <div class="header">
+        <h2>AI Health Assistant</h2>
+        <p>Get instant answers to your health questions from our AI-powered assistant</p>
+      </div>
+
+      <div class="bot-icon">🤖</div>
+      <p style="text-align:center; font-weight:bold;">Welcome to HealthBot AI!</p>
+      <p style="text-align:center; color:#555; margin-bottom:15px;">Ask me anything about health, diseases, prevention, or symptoms</p>
+
+      <div class="suggestions">
+        <div class="suggestion-btn">What are COVID-19 symptoms?</div>
+        <div class="suggestion-btn">How to prevent dengue fever?</div>
+        <div class="suggestion-btn">When should I get vaccinated?</div>
+        <div class="suggestion-btn">What to do for high fever?</div>
+        <div class="suggestion-btn">Food safety tips during monsoon</div>
+        <div class="suggestion-btn">How to maintain good hygiene?</div>
+      </div>
+
+      <!-- Input Box -->
+      <div class="input-container">
+        <input type="text" id="userInput" placeholder="Ask me about symptoms, diseases, prevention...">
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+
+    <!-- Right Chat Summary -->
+    <div class="chat-summary">
+      <div class="status">✅ Online & Ready</div>
+      <h3>Chat Summary</h3>
+      <div class="total-count" id="chatCount">0</div>
+      <p>No conversations yet</p>
+    </div>
+  </div>
+
+  <script>
+    let chatCount = 0;
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      if (input.value.trim() !== "") {
+        chatCount++;
+        document.getElementById("chatCount").innerText = chatCount;
+        alert("Message sent: " + input.value);
+        input.value = "";
+      }
+    }
+  </script>
+
+</body>
+</html>

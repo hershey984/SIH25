@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthBot AI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f8f6;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: #fff;
+      border-right: 1px solid #ddd;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      color: #2b7a78;
+      margin-bottom: 10px;
+    }
+
+    .nav-section {
+      margin-top: 20px;
+    }
+
+    .nav-section h4 {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      margin-bottom: 8px;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      background: #eef7f7;
+    }
+
+    /* Main Area */
+    .main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Dashboard Page */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .quick-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .btn {
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+    }
+
+    .blue { background: #4A90E2; }
+    .red { background: #E94F4F; }
+    .orange { background: #F5A623; }
+    .green { background: #4CAF50; }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      margin: 20px 0;
+    }
+
+    .health-overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .overview-box {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* Chat Screen */
+    .chat-container {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .chat-box {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex: 2;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bot-icon {
+      font-size: 50px;
+      text-align: center;
+      margin-bottom: 10px;
+      opacity: 0.6;
+    }
+
+    .suggestions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .suggestion-btn {
+      background: #f7f9fc;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .suggestion-btn:hover {
+      background: #e7f1fe;
+    }
+
+    .input-container {
+      display: flex;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .input-container input {
+      border: none;
+      padding: 10px 15px;
+      flex: 1;
+      outline: none;
+    }
+
+    .input-container button {
+      background: #4A90E2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .chat-summary {
+      flex: 1;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .total-count {
+      font-size: 40px;
+      font-weight: bold;
+      color: #4A90E2;
+      margin: 10px 0;
+    }
+
+    /* Health Alerts */
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+    }
+    .alerts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .alert-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 6px solid #ddd;
+    }
+    .alert-card h3 { margin: 0 0 10px; font-size: 18px; }
+    .alert-card p { margin: 5px 0; color: #444; font-size: 14px; }
+    .alert-type {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 3px 6px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    .critical { background: #ffe5e5; border-left-color: #e94f4f; }
+    .medium { background: #fff7e6; border-left-color: #f5a623; }
+    .low { background: #f0f7ff; border-left-color: #4a90e2; }
+    .action-box {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      font-size: 13px;
+    }
+    .meta-info {
+      font-size: 12px;
+      color: #666;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .source { font-size: 12px; color: #888; }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>HealthBot AI</h2>
+    <div class="nav-section">
+      <h4>Health Services</h4>
+      <div class="nav-link" onclick="showDashboard()">Dashboard</div>
+      <div class="nav-link" onclick="showChat()">Health Chat</div>
+      <div class="nav-link" onclick="showAlerts()">Health Alerts</div>
+      <div class="nav-link">Emergency Help</div>
+      <div class="nav-link">My Profile</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Dashboard -->
+    <div id="dashboard">
+      <div class="header">
+        <h1>Good Afternoon, Zuladia!</h1>
+        <span style="color: green; font-weight:bold;">Health Monitoring Active</span>
+      </div>
+
+      <div class="quick-buttons">
+        <div class="btn blue" onclick="showChat()">Ask Health Questions</div>
+        <div class="btn red">Get Help Now</div>
+        <div class="btn orange" onclick="showAlerts()">View Alerts</div>
+        <div class="btn green">My Health Info</div>
+      </div>
+
+      <div class="card">
+        <h3>Vaccination Schedule</h3>
+        <p class="empty-state">No upcoming vaccinations scheduled.</p>
+        <button>+ Add Vaccine</button>
+      </div>
+
+      <div class="card">
+        <h3>Emergency Contact</h3>
+        <p class="empty-state">No emergency contact set</p>
+        <button>Add Emergency Contact</button>
+      </div>
+
+      <div class="card">
+        <h3>Health Overview</h3>
+        <div class="health-overview">
+          <div class="overview-box">Age</div>
+          <div class="overview-box">Blood Type</div>
+          <div class="overview-box">Weight</div>
+          <div class="overview-box">Height</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Page -->
+    <div id="healthchat" class="hidden">
+      <div class="chat-container">
+        <div class="chat-box">
+          <h2>AI Health Assistant</h2>
+          <p style="color:#555;">Get instant answers to your health questions from our AI-powered assistant</p>
+          <div class="bot-icon">🤖</div>
+          <p style="text-align:center; font-weight:bold;">Welcome to HealthBot AI!</p>
+          <p style="text-align:center; color:#555;">Ask me anything about health, diseases, prevention, or symptoms</p>
+
+          <div class="suggestions">
+            <div class="suggestion-btn">What are COVID-19 symptoms?</div>
+            <div class="suggestion-btn">How to prevent dengue fever?</div>
+            <div class="suggestion-btn">When should I get vaccinated?</div>
+            <div class="suggestion-btn">What to do for high fever?</div>
+            <div class="suggestion-btn">Food safety tips during monsoon</div>
+            <div class="suggestion-btn">How to maintain good hygiene?</div>
+          </div>
+
+          <div class="input-container">
+            <input type="text" id="userInput" placeholder="Ask me about symptoms, diseases, prevention...">
+            <button onclick="sendMessage()">➤</button>
+          </div>
+        </div>
+
+        <div class="chat-summary">
+          <div style="color:green; font-weight:bold;">✅ Online & Ready</div>
+          <h3>Chat Summary</h3>
+          <div class="total-count" id="chatCount">0</div>
+          <p>No conversations yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Health Alerts Page -->
+    <div id="healthalerts" class="hidden">
+      <h2>Health Alerts</h2>
+      <div class="filters">
+        <select id="filterType">
+          <option value="all">All Types</option>
+          <option value="disease">Disease Outbreak</option>
+          <option value="vaccination">Vaccination</option>
+          <option value="weather">Weather Health</option>
+          <option value="air">Air Quality</option>
+          <option value="healthtip">Health Tip</option>
+        </select>
+        <select id="filterSeverity">
+          <option value="all">All Severity</option>
+          <option value="critical">Critical</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+
+      <div class="alerts-grid">
+        <div class="alert-card critical" data-type="disease" data-severity="critical">
+          <span class="alert-type">Disease Outbreak</span>
+          <h3>Dengue Fever Alert - Delhi NCR</h3>
+          <p>Increased cases of dengue fever reported in Delhi and surrounding areas.</p>
+          <div class="action-box"><strong>Action:</strong> Remove stagnant water, use repellents, seek care if fever persists.</div>
+          <div class="meta-info"><span>📍 Delhi NCR</span><span>📅 Sep 19, 2025</span><span class="source">Source: Delhi Health Dept</span></div>
+        </div>
+
+        <div class="alert-card medium" data-type="vaccination" data-severity="medium">
+          <span class="alert-type">Vaccination</span>
+          <h3>Free COVID-19 Vaccination Drive</h3>
+          <p>Free booster vaccination for citizens above 18 years. Updated vaccines available.</p>
+          <div class="action-box"><strong>Action:</strong> Visit nearest government hospital with ID.</div>
+          <div class="meta-info"><span>📍 All India</span><span>📅 Sep 19, 2025</span><span class="source">Source: MoHFW</span></div>
+        </div>
+
+        <div class="alert-card low" data-type="healthtip" data-severity="low">
+          <span class="alert-type">Health Tip</span>
+          <h3>Hand Hygiene Awareness</h3>
+          <p>Wash hands for at least 20 seconds with soap and water.</p>
+          <div class="action-box"><strong>Action:</strong> Practice regular handwashing, use sanitizer if needed.</div>
+          <div class="meta-info"><span>📍 All India</span><span>📅 Sep 19, 2025</span><span class="source">Source: WHO</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <script>
+  let chatCount = 0;
+
+  function showChat() {
+    toggleVisibility("healthchat");
+  }
+
+  function showDashboard() {
+    toggleVisibility("dashboard");
+  }
+
+  function showAlerts() {
+    toggleVisibility("healthalerts");
+  }
+
+  function toggleVisibility(sectionId) {
+    const section = document.getElementById(sectionId);
+    const isCurrentlyHidden = section.classList.contains("hidden");
+    hideAll();
+    if (isCurrentlyHidden) {
+      section.classList.remove("hidden");
+    }
+  }
+
+  function hideAll() {
+    document.getElementById("dashboard").classList.add("hidden");
+    document.getElementById("healthchat").classList.add("hidden");
+    document.getElementById("healthalerts").classList.add("hidden");
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    if (input.value.trim() !== "") {
+      chatCount++;
+      document.getElementById("chatCount").innerText = chatCount;
+      alert("Message sent: " + input.value);
+      input.value = "";
+    }
+  }
+
+  // Filtering alerts
+  const filterType = document.getElementById("filterType");
+  const filterSeverity = document.getElementById("filterSeverity");
+  const alerts = document.querySelectorAll(".alert-card");
+
+  function applyFilters() {
+    const type = filterType.value;
+    const severity = filterSeverity.value;
+    alerts.forEach(alert => {
+      const matchesType = (type === "all" || alert.dataset.type === type);
+      const matchesSeverity = (severity === "all" || alert.dataset.severity === severity);
+      alert.style.display = (matchesType && matchesSeverity) ? "flex" : "none";
+    });
+  }
+
+  if (filterType) filterType.addEventListener("change", applyFilters);
+  if (filterSeverity) filterSeverity.addEventListener("change", applyFilters);
+</script>
+</body>
+</html>

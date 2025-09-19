@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Help</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f9fb;
+      padding: 20px;
+    }
+
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 28px;
+      margin: 0;
+      color: #c62828;
+    }
+
+    .page-subtitle {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .alert-banner {
+      background: #ffeaea;
+      color: #b71c1c;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #f5c6c6;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    /* Emergency Services Grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      border-left: 6px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0 0 5px;
+    }
+
+    .call-btn {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      color: white;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .ambulance { border-left-color: #e53935; }
+    .ambulance .call-btn { background: #e53935; }
+
+    .fire { border-left-color: #f57c00; }
+    .fire .call-btn { background: #f57c00; }
+
+    .police { border-left-color: #1976d2; }
+    .police .call-btn { background: #1976d2; }
+
+    .disaster { border-left-color: #6a1b9a; }
+    .disaster .call-btn { background: #6a1b9a; }
+
+    /* Right Column Cards */
+    .side-card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+    }
+
+    .side-card h3 {
+      margin-top: 0;
+    }
+
+    .side-card button {
+      width: 100%;
+      background: #4A90E2;
+      border: none;
+      padding: 10px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .location-box {
+      background: #e8f5e9;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    /* Health Emergency Guide */
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .guide-card {
+      background: #fff;
+      border: 1px solid #f5c6c6;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .guide-card h4 {
+      margin: 0 0 10px;
+      color: #b71c1c;
+    }
+
+    .guide-card ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #555;
+    }
+
+    .guide-card button {
+      margin-top: 10px;
+      width: 100%;
+      background: #e53935;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚨 Emergency Help</h1>
+  <p class="page-subtitle">Quick access to emergency services and medical assistance</p>
+
+  <div class="alert-banner">
+    <strong>⚠ Life-threatening emergency?</strong> Call 108 immediately for ambulance services. 
+    This page provides guidance but cannot replace professional medical care.
+  </div>
+
+  <div class="container">
+    <!-- Left Column: Emergency Services & Guide -->
+    <div>
+      <h2>Emergency Services</h2>
+      <div class="service-grid">
+        <div class="service-card ambulance">
+          <h3 class="service-title">Ambulance</h3>
+          <p>Emergency medical response and hospital transport</p>
+          <button class="call-btn">Call 108</button>
+        </div>
+        <div class="service-card fire">
+          <h3 class="service-title">Fire Brigade</h3>
+          <p>Fire emergency and rescue services</p>
+          <button class="call-btn">Call 101</button>
+        </div>
+        <div class="service-card police">
+          <h3 class="service-title">Police</h3>
+          <p>Law enforcement and security emergency</p>
+          <button class="call-btn">Call 100</button>
+        </div>
+        <div class="service-card disaster">
+          <h3 class="service-title">Disaster Management</h3>
+          <p>Natural disaster and crisis support</p>
+          <button class="call-btn">Call 1077</button>
+        </div>
+      </div>
+
+      <h2>Health Emergency Guide</h2>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h4>Chest Pain</h4>
+          <ul>
+            <li>Severe chest pain</li>
+            <li>Pain radiating to arm/jaw</li>
+            <li>Shortness of breath</li>
+          </ul>
+          <button>Call 108 Immediately</button>
+        </div>
+
+        <div class="guide-card">
+          <h4>Difficulty Breathing</h4>
+          <ul>
+            <li>Severe shortness of breath</li>
+            <li>Wheezing</li>
+            <li>Blue lips or fingernails</li>
+          </ul>
+          <button>Call 108 Immediately</button>
+        </div>
+
+        <div class="guide-card">
+          <h4>Stroke Signs</h4>
+          <ul>
+            <li>Face drooping</li>
+            <li>Arm weakness</li>
+            <li>Speech difficulty</li>
+          </ul>
+          <button>Call 108 Immediately</button>
+        </div>
+
+        <div class="guide-card">
+          <h4>Severe Bleeding</h4>
+          <ul>
+            <li>Heavy bleeding</li>
+            <li>Deep cuts</li>
+            <li>Blood spurting</li>
+          </ul>
+          <button>Call 108 Immediately</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Contact, Location, Medical Info -->
+    <div>
+      <div class="side-card">
+        <h3>Emergency Contact</h3>
+        <p>No emergency contact set</p>
+        <button>Set Emergency Contact</button>
+      </div>
+
+      <div class="side-card">
+        <h3>Location Services</h3>
+        <div class="location-box">📍 Location detected: 19.123000, 72.835001</div>
+        <button>Share Location</button>
+      </div>
+
+      <div class="side-card">
+        <h3>Medical Info</h3>
+        <p>Blood Type: <strong>-</strong></p>
+        <p>Age: <strong>-</strong></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

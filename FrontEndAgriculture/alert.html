@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Critical Alerts | महत्वपूर्ण अलर्ट</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .header h2 {
+      font-size: 24px;
+      margin: 0;
+      color: #b91c1c;
+    }
+
+    .header p {
+      color: #444;
+      margin: 5px 0 20px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .filters button {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .filters button.active {
+      background: #dc2626;
+      color: white;
+      border: none;
+    }
+
+    .alert-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border-left: 6px solid #f59e0b;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .alert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .alert-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .badges span {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    .warning { background: #fef3c7; color: #92400e; }
+    .critical { background: #fee2e2; color: #991b1b; }
+    .expired { background: #e5e7eb; color: #374151; }
+    .action { background: #fca5a5; color: #7f1d1d; }
+
+    .meta {
+      font-size: 13px;
+      color: #555;
+      margin: 8px 0;
+    }
+
+    .alert-body {
+      margin-top: 10px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .tags {
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e0f2fe;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>⚠️ Critical Alerts | महत्वपूर्ण अलर्ट</h2>
+      <p>Stay updated with important farming alerts and notifications <br> महत्वपूर्ण खेती की जानकारी और चेतावनी</p>
+    </div>
+
+    <div class="filters">
+      <button class="active">All Alerts</button>
+      <button>Emergency</button>
+      <button>Critical</button>
+      <button>Warning</button>
+      <button>Info</button>
+    </div>
+
+    <!-- Alert 1 -->
+    <div class="alert-card" style="border-left-color:#f59e0b;">
+      <div class="alert-header">
+        <h3>🌧️ Heavy Rainfall Alert | भारी बारिश की चेतावनी</h3>
+        <div class="badges">
+          <span class="expired">Expired</span>
+          <span class="warning">Warning</span>
+          <span class="action">Action Required</span>
+        </div>
+      </div>
+      <div class="meta">19 सितम्बर 2025, 08:42 am • Punjab, Haryana • Wheat, Mustard</div>
+      <div class="alert-body">
+        अगले 48 घंटों में भारी बारिश की संभावना है। कृपया निम्न सावधानियां बरतें:  
+        • फसल की कटाई तेज करें  
+        • पशुओं को सुरक्षित स्थान पर रखें  
+        • जल निकासी का प्रबंध करें  
+        <br><br>
+        Heavy rainfall expected in next 48 hours. Please harvest ready crops and ensure proper drainage.
+      </div>
+      <div class="tags">
+        <span class="tag">Weather</span>
+      </div>
+    </div>
+
+    <!-- Alert 2 -->
+    <div class="alert-card" style="border-left-color:#dc2626;">
+      <div class="alert-header">
+        <h3>🪳 Pest Outbreak Alert: Brown Plant Hopper | कीट प्रकोप चेतावनी</h3>
+        <div class="badges">
+          <span class="expired">Expired</span>
+          <span class="critical">Critical</span>
+          <span class="action">Action Required</span>
+        </div>
+      </div>
+      <div class="meta">19 सितम्बर 2025, 08:42 am • West Bengal, Odisha • Rice</div>
+      <div class="alert-body">
+        धान की फसल में ब्राउन प्लांट हॉपर का प्रकोप तेजी से बढ़ रहा है। तुरंत निम्न कार्यवाही करें:  
+        • इमिडाक्लोप्रिड 17.8% SL का स्प्रे करें  
+        • खेत में पानी का स्तर कम करें  
+        • बीमार पौधों को हटा दें  
+        <br><br>
+        Brown Plant Hopper infestation spreading rapidly in rice crops. Immediate action needed.
+      </div>
+      <div class="tags">
+        <span class="tag">Pest Outbreak</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
